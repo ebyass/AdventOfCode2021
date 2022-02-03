@@ -1,4 +1,8 @@
-import { binaryDiagnostic } from "./binaryDiagnostic";
+import {
+  binaryDiagnostic,
+  convertToArrayOfArray,
+  readValues,
+} from "./binaryDiagnostic";
 import { binary } from "../day3/binary";
 const binaryInput = [
   "00100",
@@ -15,25 +19,30 @@ const binaryInput = [
   "01010",
 ];
 
+const basicExample = ["00100"];
+
+const oneByTwo = [
+  ["1", "0", "1"],
+  ["0", "0", "1"],
+  ["1", "0", "1"],
+];
+
 describe("binaryDiagnostic", () => {
-  it("returns the zeroes amd ones", () => {
-    expect(binaryDiagnostic(binaryInput, 1)).toBe({ ones: 5, zeroes: 7 });
-    // expect(binaryDiagnostic(binary)).toBe(198);
+  it("returns a number", () => {
+    expect(binaryDiagnostic(binaryInput)).toEqual(0);
   });
-  it("returns the zeroes amd ones", () => {
-    // expect(binaryDiagnostic(binaryInput)).toBe(198);
-    expect(binaryDiagnostic(binaryInput, 2)).toBe({ ones: 8, zeroes: 4 });
+});
+
+describe("convertToArrayOfArray", () => {
+  it("returns a number", () => {
+    expect(convertToArrayOfArray(basicExample)).toEqual([
+      ["0", "0", "1", "0", "0"],
+    ]);
   });
-  it("returns the zeroes amd ones", () => {
-    // expect(binaryDiagnostic(binaryInput)).toBe(198);
-    expect(binaryDiagnostic(binaryInput, 3)).toBe(198);
-  });
-  it("returns the zeroes amd ones", () => {
-    // expect(binaryDiagnostic(binaryInput)).toBe(198);
-    expect(binaryDiagnostic(binaryInput, 4)).toBe(198);
-  });
-  it("returns the zeroes amd ones", () => {
-    // expect(binaryDiagnostic(binaryInput)).toBe(198);
-    expect(binaryDiagnostic(binaryInput, 5)).toBe(198);
+});
+
+describe("readValues", () => {
+  it("returns most common digit", () => {
+    expect(readValues(0, oneByTwo)).toEqual("1");
   });
 });

@@ -1,21 +1,48 @@
-interface BinaryInput {
-  zeroes: number;
-  ones: number;
+export const binaryDiagnostic = (binaryInput: string[]): number => {
+  let gamma = [];
+  let gammaDecimal = 0;
+  let epsilonDecimal = 0;
+  const data = convertToArrayOfArray(binaryInput);
+  const length = data[0].length;
+  for (let i = 0; i < length; i++) {
+    gamma.push(readValues(i, data));
+  }
+  let epsilon = gamma.map((item) => {
+    return item === "1" ? "0" : "1";
+  });
+  console.log("g", gamma);
+  console.log("e", epsilon);
+};
+
+// function text2Binary(string) {
+//   return string
+//     .split("")
+//     .map(function (char) {
+//       return char.charCodeAt(0).toString(2);
+//     })
+//     .join(" ");
+// }
+
+export function convertToArrayOfArray(basicInput: string[]) {
+  const newResult = basicInput.map((item) => {
+    return item.split("");
+  });
+  console.log(newResult);
+  return newResult;
 }
 
-export const binaryDiagnostic = (binaryInput: string[], index: number) => {
-  let zeroes = 0;
-  let ones = 0;
-  binaryInput.forEach((binaryBit) => {
-    console.log(binaryBit);
-    if (binaryBit[index] === "0") {
-      zeroes++;
+export function readValues(index: number, basicInput: string[][]) {
+  let zero = 0;
+  let one = 0;
+  for (let i = 0; i < basicInput.length; i++) {
+    if (basicInput[i][index] === "0") {
+      zero++;
     } else {
-      ones++;
+      one++;
     }
-  });
-  return { ones, zeroes };
-};
+  }
+  return zero > one ? "0" : "1";
+}
 
 // const lengthOfInput = binaryInput.length;
 // let binaryInputMap = binaryInput
